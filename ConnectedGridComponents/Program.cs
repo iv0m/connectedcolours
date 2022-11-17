@@ -1,11 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿/// <summary>
+/// IM - 17/11/2022
+/// 
+/// *** Write a piece of Javascript that would find the max number of connected colours
+/// *** based on this illustration.
+/// </summary>
 public class GFG
 {
-    static int Rows = 3; // rows
-    static int Cols = 4; // columns
+    // Given input array of colours
+    static char[,] matrix = new char[,]
+        {
+                { 'y', 'y', 'g', 'b' },
+                { 'y', 'g', 'b', 'g' },
+                { 'b', 'g', 'g', 'g' },
+        };
 
+    // Set size of rows/columns
+    static int Rows = matrix.GetLength(0);
+    static int Cols = matrix.GetLength(1);
+
+    // This is a navigation structure (right/down/up/left)
     static int[] dx = { 0, 1, -1, 0 };
     static int[] dy = { 1, 0, 0, -1 };
 
@@ -31,8 +44,14 @@ public class GFG
         }
     }
 
-    // Function checks if a cell is valid, i.e.
-    // it is inside the grid and equal to 1
+    /// <summary>
+    /// Checks if a cell has valid coordinates and is been visited before
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="matrix"></param>
+    /// <param name="colourKey"></param>
+    /// <returns></returns>
     static bool is_valid(int x, int y, char[,] matrix, char colourKey)
     {
         if (x < Rows && y < Cols && x >= 0 && y >= 0)
@@ -51,6 +70,13 @@ public class GFG
     // each connected component
     static Dictionary<char, int> mp = new Dictionary<char, int>();
 
+    /// <summary>
+    /// Checks if a cell for a particular colour has been visited
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="colourKey"></param>
+    /// <returns></returns>
     static bool HasCellBeenVisited(int x, int y, char colourKey)
     {
         if (visited.Keys.Contains(colourKey))
@@ -162,9 +188,11 @@ public class GFG
         }
     }
 
-    /**
-     * This method returns a list of unique color keys
-     */
+    /// <summary>
+    /// This method returns a list of unique color keys
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <returns></returns>
     static List<char> GetUniqueColorKeys(char[,] matrix)
     {
         var uniqueKeys = new List<char>();
@@ -177,16 +205,11 @@ public class GFG
         return uniqueKeys;
     }
 
+    /// <summary>
+    /// Program Start
+    /// </summary>
     public static void Main()
     {
-        // Given input array of colours
-        char[,] matrix = new char[,]
-            { 
-                { 'y', 'y', 'g', 'b' },
-                { 'y', 'g', 'b', 'g' },
-                { 'b', 'g', 'g', 'g' },
-            };
-
         // Initialise the dictionary map that hold visited cell per colour
         InitialiseVisitedMapArray(matrix);
 
