@@ -1,8 +1,5 @@
 ﻿/// <summary>
 /// IM - 17/11/2022
-/// 
-/// *** Write a piece of Javascript that would find the max number of connected colours
-/// *** based on this illustration.
 /// </summary>
 public class GFG
 {
